@@ -1,0 +1,20 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: horizontal;
+    flex-wrap: wrap;
+}
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: horizontal;
+}
+
+
+.form-form{
+    justify-content: center;
+    align-items: center;
+}
