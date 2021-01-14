@@ -1,7 +1,7 @@
 const users = []
 
-function userJoin(id, name, familyName, staff){
-    const user = { id, name, familyName, staff }
+function userJoin(id, name, familyName, staff, count){
+    const user = { id, name, familyName, staff, count }
 
     users.push(user);
 
@@ -27,11 +27,16 @@ function userLeave(id){
     }
 }
 
+function tapped(id){
+    getCurrentUser(id).count += 1
+}
+
 
 
 module.exports = {
     userJoin,
     getCurrentUser,
     userLeave,
-    getAllUsers
+    getAllUsers,
+    tapped
 }

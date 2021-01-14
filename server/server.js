@@ -2,7 +2,7 @@ const path = require('path');
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
-const { userJoin, getCurrentUser, getAllUsers, userLeave} = require('./utils/lobby')
+const { userJoin, getCurrentUser, getAllUsers, userLeave, tapped} = require('./utils/lobby')
 
 const app = express();
 const server = http.createServer(app);
@@ -13,11 +13,18 @@ const io = socketio(server, {
     }
 })
 
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, 'public')))
 
 io.on('connection', socket =>{
+
+    socket.on('tap', ({ tapId }) => {
+        io.emit('message', tapId)
+        tapped(tapId)
+        console.log(getCurrentUser(tapId))
+    })
+
     socket.on('joinRoom', ({ name, familyName, staffID }) => {
-        const user = userJoin(socket.id, name, familyName, staffID)
+        const user = userJoin(socket.id, name, familyName, staffID, 0)
 
         io.emit('message', `Welcome ${user.name} whose in ${user.familyName} and staff = ${user.staff}`)
         console.log(socket.id)
