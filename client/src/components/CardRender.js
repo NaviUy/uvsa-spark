@@ -12,7 +12,6 @@ export function CardRender({id, name, familyName, staff, count}, index, setId) {
             <Card.Header style={{padding:'10px 10px 10px 10px'}}>Name: { name }</Card.Header>
             <Card.Title style={{padding:'10px 10px 10px 10px', marginBottom:'0'}}>Family: { familyName }</Card.Title>
             <Card.Title style={{padding:'10px 10px 10px 10px', marginBottom:'0'}}>Staff: { staff }</Card.Title>
-            <Card.Text style={{padding:'10px 10px 10px 10px', marginBottom:'0'}}>Count: { count }</Card.Text>
             <Button style={{margin:'15px 15px 15px 15px'}} onClick={()=>{
                 tapHandler(id)
             }}>Tap</Button>

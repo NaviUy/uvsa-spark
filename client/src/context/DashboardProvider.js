@@ -7,7 +7,7 @@ export function useDashboard(){
     return useContext(DashboardContext)
 }
 
-export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, children }) {
+export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, setCurrentUser, setCurrentCount, children }) {
     const socket = useSocket()
 
     useEffect(() => {
@@ -24,12 +24,16 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
 
         socket.emit('joinRoom', { name, familyName, staffID })
 
+        socket.on('currentCount', ({count}) =>{
+            setCurrentCount(count)
+        })
+
         return () => {
             socket.off('message')
             socket.off('users')
             socket.off('joinRoom')
         }
-    }, [name, familyName, staffID, setUsers, socket])
+    }, [name, familyName, staffID, setUsers, setCurrentUser, setCurrentCount, socket])
 
     useEffect(() => {
         if(socket == null) return

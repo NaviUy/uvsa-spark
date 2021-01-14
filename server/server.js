@@ -18,15 +18,21 @@ const io = socketio(server, {
 io.on('connection', socket =>{
 
     socket.on('tap', ({ tapId }) => {
-        io.emit('message', tapId)
+        // io.emit('message', tapId)
         tapped(tapId)
-        console.log(getCurrentUser(tapId))
+        // console.log(getCurrentUser(tapId))
+        io.to(tapId).emit('currentCount', {
+            count: getCurrentUser(tapId).count
+        })
     })
 
     socket.on('joinRoom', ({ name, familyName, staffID }) => {
         const user = userJoin(socket.id, name, familyName, staffID, 0)
 
         io.emit('message', `Welcome ${user.name} whose in ${user.familyName} and staff = ${user.staff}`)
+        socket.emit('currentUser', {
+            userID: getCurrentUser(socket.id)
+        })
         console.log(socket.id)
 
         io.emit('users', {
