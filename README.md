@@ -11,4 +11,5 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 - [x] staff view
 - [x] styling
 - [ ] images
+- [ ] modify boiler code
 - [ ] deploy
