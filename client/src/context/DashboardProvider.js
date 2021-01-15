@@ -7,7 +7,7 @@ export function useDashboard(){
     return useContext(DashboardContext)
 }
 
-export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, setCurrentUser, setCurrentCount, children }) {
+export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, setIsStaff, setCurrentCount, kickId, setKickId, children }) {
     const socket = useSocket()
 
     useEffect(() => {
@@ -18,8 +18,13 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
         })
 
         socket.on('users', ({ users }) =>{
-           console.log(users)
-           setUsers(users)
+            let listOfUsers = users.filter(user => user.id !== socket.id)
+            // console.log(users)
+            // console.log("socketID: " + socket.id)
+            let isCurStaff = users.filter(user => user.id === socket.id)[0].staff
+            // console.log(isCurStaff)
+            setUsers(listOfUsers)
+            setIsStaff(isCurStaff)
         })
 
         socket.emit('joinRoom', { name, familyName, staffID })
@@ -28,12 +33,17 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
             setCurrentCount(count)
         })
 
+        socket.on('kick', () =>{
+            window.location.reload()
+            alert("You have been kicked.")
+        })
+
         return () => {
             socket.off('message')
             socket.off('users')
             socket.off('joinRoom')
         }
-    }, [name, familyName, staffID, setUsers, setCurrentUser, setCurrentCount, socket])
+    }, [name, familyName, staffID, setUsers, setCurrentCount, setIsStaff, socket])
 
     useEffect(() => {
         if(socket == null) return
@@ -46,6 +56,17 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
             socket.off('tap')
         }
     }, [tapId, setTapId, socket])
+
+    useEffect(() => {
+        if(socket == null) return
+        if(kickId){
+            socket.emit('kick', {kickId})
+            setKickId()
+        }
+        return () => {
+            socket.off('kick')
+        }
+    }, [kickId, setKickId, socket])
 
 
 

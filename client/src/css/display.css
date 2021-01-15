@@ -8,7 +8,7 @@
     width: 80%;
     margin: 20px 20px 20px 20px;
     padding: 0;
-    height: 100px;
+    height: 150px;
     border-radius: 10px;
     display:flex;
     justify-content: center;
@@ -19,3 +19,41 @@
 .display-heading{
     margin-top: 5px;
 }
+
+.waiting-lobby{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin-top: 15px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .card-container {
+      display:flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .card-container{
+        justify-content: center;
+    }
+  }

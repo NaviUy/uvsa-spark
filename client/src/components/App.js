@@ -8,7 +8,7 @@ function App() {
   const [staffID, setStaffID] = useState()
 
   return (
-      name && familyName && staffID ? <Dashboard name={ name } familyName={ familyName } staffID = { staffID } /> : <Login onFormSubmit={setName} onFormSecondSubmit={setFamilyName} onFormThirdSubmit={setStaffID} />
+      name && familyName && staffID ? <Dashboard name={ name } familyName={ familyName } staffID = { staffID }/> : <Login onFormSubmit={setName} onFormSecondSubmit={setFamilyName} onFormThirdSubmit={setStaffID} />
 
   );
 }

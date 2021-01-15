@@ -26,6 +26,13 @@ io.on('connection', socket =>{
         })
     })
 
+    socket.on('kick', ({ kickId }) =>{
+        io.to(kickId).emit('kick', '')
+        io.emit('users', {
+            users: getAllUsers()
+        })
+    })
+
     socket.on('joinRoom', ({ name, familyName, staffID }) => {
         const user = userJoin(socket.id, name, familyName, staffID, 0)
 

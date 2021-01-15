@@ -3,7 +3,7 @@ import  { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import logo from '../assets/download.jpg'
 import '../css/login.css'
 
-export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSubmit } ) {
+export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSubmit, msg } ) {
 
     const nameRef = useRef()
     const familyRef = useRef()
@@ -62,7 +62,8 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
         <Container className="logo-container">
             <Row className="logo-row">
                 <Col className="logo-column"><img src={logo} alt="logo" style={{height: "300px", width:"400px"}}/></Col>
-            </Row></Container>
+            </Row>
+        </Container>
         <Container className="login-container">
             <Row className="form-row">
                 <Col className="form-column">

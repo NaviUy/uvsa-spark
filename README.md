@@ -5,10 +5,10 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 
 - [x] tap funtionality
 - [x] display count only your count
-- [ ] hide your own card
-- [ ] leave button
-- [ ] waiting lobby
-- [ ] staff view
-- [ ] styling
+- [x] hide your own card
+- [x] leave button
+- [x] waiting lobby
+- [x] staff view
+- [x] styling
 - [ ] images
 - [ ] deploy

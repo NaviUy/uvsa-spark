@@ -14,7 +14,7 @@ function getCurrentUser(id){
 }
 
 //get list
-function getAllUsers(){
+function getAllUsers(id){
     return users
 }
 

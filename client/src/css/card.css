@@ -1,0 +1,23 @@
+.card-header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.name-header{
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    flex: 1;
+}
+
+.family-name{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
