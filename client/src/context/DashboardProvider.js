@@ -7,7 +7,7 @@ export function useDashboard(){
     return useContext(DashboardContext)
 }
 
-export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, setIsStaff, setCurrentCount, kickId, setKickId, children }) {
+export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, setIsStaff, setCurrentCount, kickId, setKickId, imgsrc, imgName, children }) {
     const socket = useSocket()
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
             setIsStaff(isCurStaff)
         })
 
-        socket.emit('joinRoom', { name, familyName, staffID })
+        socket.emit('joinRoom', { name, familyName, staffID, imgsrc, imgName })
 
         socket.on('currentCount', ({count}) =>{
             setCurrentCount(count)
@@ -35,7 +35,6 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
 
         socket.on('kick', () =>{
             window.location.reload()
-            alert("You have been kicked.")
         })
 
         return () => {
@@ -43,7 +42,7 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
             socket.off('users')
             socket.off('joinRoom')
         }
-    }, [name, familyName, staffID, setUsers, setCurrentCount, setIsStaff, socket])
+    }, [name, familyName, staffID, setUsers, setCurrentCount, setIsStaff, socket, imgsrc, imgName])
 
     useEffect(() => {
         if(socket == null) return

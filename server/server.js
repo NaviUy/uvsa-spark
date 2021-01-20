@@ -1,17 +1,34 @@
-const path = require('path');
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
-const { userJoin, getCurrentUser, getAllUsers, userLeave, tapped} = require('./utils/lobby')
+const profile = require( './route/api/profile');
+const bodyParser = require('body-parser');
+const cors = require('cors')
+
+const test = require('./route/api/test')
+
+const { userJoin, getCurrentUser, getAllUsers, userLeave, tapped, deleteImg } = require('./utils/lobby')
 
 const app = express();
 const server = http.createServer(app);
+
 const io = socketio(server, {
     cors:{
         origin:"http://localhost:3000",
         credentials: true
     }
 })
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// app.use(cors)
+
+app.use("/route/api", profile)
+// app.post('/route/api/test', (req, res) => {
+//     console.log(req)
+//     res.send("connected")
+// })
+// app.use("/", router)
 
 // app.use(express.static(path.join(__dirname, 'public')))
 
@@ -33,8 +50,8 @@ io.on('connection', socket =>{
         })
     })
 
-    socket.on('joinRoom', ({ name, familyName, staffID }) => {
-        const user = userJoin(socket.id, name, familyName, staffID, 0)
+    socket.on('joinRoom', ({ name, familyName, staffID, imgsrc, imgName }) => {
+        const user = userJoin(socket.id, name, familyName, staffID, imgsrc, imgName, 0)
 
         io.emit('message', `Welcome ${user.name} whose in ${user.familyName} and staff = ${user.staff}`)
         socket.emit('currentUser', {
@@ -47,7 +64,9 @@ io.on('connection', socket =>{
         })
 
         socket.on('disconnect', () =>{
-            const user = userLeave(socket.id)
+            const user = getCurrentUser(socket.id)
+            deleteImg(user.imgName)
+            userLeave(user.id)
             io.emit('message', `${user.name} has left the server.`)
 
             io.emit('users', {
@@ -58,5 +77,4 @@ io.on('connection', socket =>{
     })
 })
 
-
-io.listen(5000, () => console.log('Server starting...'));
+server.listen(5000, () => console.log('Server starting...'));

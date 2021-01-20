@@ -5,7 +5,7 @@ import { CardRender } from './CardRender'
 import { Container, Button } from 'react-bootstrap'
 import '../css/display.css'
 
-export default function Dashboard({ name, familyName, staffID }) {
+export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }) {
     const [users, setUsers] = useState([])
     const [tapId, setTapId] = useState()
     const [kickId, setKickId] =  useState()
@@ -22,7 +22,7 @@ export default function Dashboard({ name, familyName, staffID }) {
     return (
         <>
         <SocketProvider>
-            <DashboardProvider name={ name } familyName={ familyName } staffID = { staffID } setUsers = { setUsers } tapId = {tapId} setTapId = {setTapId} setCurrentCount={setCurrentCount} setIsStaff={setIsStaff} kickId={kickId} setKickId={setKickId}>
+            <DashboardProvider name={ name } familyName={ familyName } staffID = { staffID } setUsers = { setUsers } tapId = {tapId} setTapId = {setTapId} setCurrentCount={setCurrentCount} setIsStaff={setIsStaff} kickId={kickId} setKickId={setKickId} imgsrc={imgsrc} imgName={imgName}>
             <Container className="display-bar">
                 <div className="display-div">
                     <h5 className="display-heading">Your Taps:</h5>
