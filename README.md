@@ -10,6 +10,6 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 - [x] waiting lobby
 - [x] staff view
 - [x] styling
-- [x] images
-- [ ] modify boiler code
+- [ ] debug images
+- [x] modify boiler code
 - [ ] deploy
