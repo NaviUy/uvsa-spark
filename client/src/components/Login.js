@@ -113,7 +113,7 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
                             // console.log( 'fileName', fileName );
                             // console.log( 'File Uploaded', '#3089cf' )
                             // console.log(document)
-                            // console.log(response.data)
+                            console.log(response.data.location)
                             document.querySelector(".loader-row").setAttribute("style", "display:none")
                             onFormFourthSubmit(response.data.location)
                             onFormFifthSubmit(response.data.image)

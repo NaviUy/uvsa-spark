@@ -1,13 +1,4 @@
-const aws = require( 'aws-sdk' )
-const  { REACT_APP_AWSAccessKeyId, REACT_APP_AWSSecretKey, REACT_APP_Bucket } = process.env
-
-const s3 = new aws.S3({
-    accessKeyId: REACT_APP_AWSAccessKeyId,
-    secretAccessKey: REACT_APP_AWSSecretKey,
-    Bucket: REACT_APP_Bucket
-   });
-
-
+const axios = require('axios')
 
 const users = []
 
@@ -43,14 +34,11 @@ function tapped(id){
 }
 
 function deleteImg(imgName){
-    if(imgName !== 'default'){
-        s3.deleteObject({
-            Bucket: 'uvsa-spark',
-            Key: imgName
-        }, (error) => {
-            console.log(error)
-        })
-    }
+    axios.post('http://localhost:5000/route/api/profile-img-delete', {imgName})
+    .then(console.log("done"))
+    .catch(error => {
+        console.log(error)
+    })
 }
 
 

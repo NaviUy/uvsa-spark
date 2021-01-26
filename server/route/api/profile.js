@@ -5,8 +5,7 @@ const multer = require('multer');
 const path = require( 'path' );
 const url = require('url');
 const http = require('http')
-
-const  { REACT_APP_AWSAccessKeyId, REACT_APP_AWSSecretKey, REACT_APP_Bucket } = process.env
+// const dotenv = require('dotenv').config()
 /**
  * express.Router() creates modular, mountable route handlers
  * A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a “mini-app”.
@@ -24,11 +23,10 @@ const router = express.Router(server, {
  * PROFILE IMAGE STORING STARTS
  */
 const s3 = new aws.S3({
-    accessKeyId: REACT_APP_AWSAccessKeyId,
-    secretAccessKey: REACT_APP_AWSSecretKey,
-    Bucket: REACT_APP_Bucket
+    // accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+    // secretAccessKey: process.env.REACT_APP_SECRET_KEY,
+    // region: process.env.REACT_APP_REGION
    });
-
 
    /**
  * Single Upload
@@ -37,7 +35,7 @@ const profileImgUpload = multer({
     storage: multerS3({
      s3: s3,
      bucket: 'uvsa-spark',
-     acl: 'public-read',
+    //  acl: 'public-read',
      key: function (req, file, cb) {
       cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
      }
@@ -54,6 +52,7 @@ const profileImgUpload = multer({
  * @param cb
  * @return {*}
  */
+
 function checkFileType( file, cb ){
     // Allowed ext
     const filetypes = /jpeg|jpg|png/
@@ -72,10 +71,13 @@ function checkFileType( file, cb ){
 router.post( '/profile-img-upload', ( req, res ) => {
 
     // console.log("connected");
+    // console.log(aws)
+    // console.log(s3)
 
     profileImgUpload( req, res, ( error ) => {
         // console.log( 'requestOkokok', req.file );
         // console.log( 'error', error );
+        // console.log(req)
         if( error ){
          console.log( 'errors', error )
          res.json( { error: error } )
@@ -99,16 +101,18 @@ router.post( '/profile-img-upload', ( req, res ) => {
 })
 
 router.post( '/profile-img-delete', (req, res) => {
-    s3.deleteObject({
+    if(req.body.imgName !== 'default'){
+        s3.deleteObject({
         Bucket: 'uvsa-spark',
         Key: req.body.imgName
-    }, (error) => {
-        if(error !== null){
-            console.log(error)
-        } else{
-            console.log(req.body.imgName + " has been deleted.")
+        }, (error) => {
+         if(error !== null){
+             console.log(error)
+            } else {
+                console.log(req.body.imgName + " has been deleted.")
         }
-    })
+        })
+    }
 })
 
 module.exports = router;
