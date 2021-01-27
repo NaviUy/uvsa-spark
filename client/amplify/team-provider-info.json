@@ -1,23 +1,23 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-uvsaspark-dev-203552-authRole",
-            "UnauthRoleArn": "arn:aws:iam::818399116183:role/amplify-uvsaspark-dev-203552-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::818399116183:role/amplify-uvsaspark-dev-203552-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-uvsaspark-dev-203552-deployment",
-            "UnauthRoleName": "amplify-uvsaspark-dev-203552-unauthRole",
-            "StackName": "amplify-uvsaspark-dev-203552",
-            "StackId": "arn:aws:cloudformation:us-east-1:818399116183:stack/amplify-uvsaspark-dev-203552/faa2fe00-5f8f-11eb-9284-0e3edd8361ed",
-            "AmplifyAppId": "drl5dv7nf1zjw"
-        },
-        "categories": {
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "drl5dv7nf1zjw",
-                    "type": "manual"
-                }
-            }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-uvsaspark-dev-203552-authRole",
+      "UnauthRoleArn": "arn:aws:iam::818399116183:role/amplify-uvsaspark-dev-203552-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::818399116183:role/amplify-uvsaspark-dev-203552-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-uvsaspark-dev-203552-deployment",
+      "UnauthRoleName": "amplify-uvsaspark-dev-203552-unauthRole",
+      "StackName": "amplify-uvsaspark-dev-203552",
+      "StackId": "arn:aws:cloudformation:us-east-1:818399116183:stack/amplify-uvsaspark-dev-203552/faa2fe00-5f8f-11eb-9284-0e3edd8361ed",
+      "AmplifyAppId": "drl5dv7nf1zjw"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "drl5dv7nf1zjw",
+          "type": "manual"
         }
+      }
     }
+  }
 }

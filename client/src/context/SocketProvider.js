@@ -11,7 +11,7 @@ export function SocketProvider({ children }) {
     const [socket, setSocket] = useState()
 
     useEffect(() => {
-        const newSocket = io('http://localhost:5000')
+        const newSocket = io('ec2-52-91-46-189.compute-1.amazonaws.com:443')
         setSocket(newSocket)
 
         return () => {

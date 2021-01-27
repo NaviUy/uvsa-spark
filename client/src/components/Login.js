@@ -70,7 +70,7 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
             if(imgsrc && event.target.files[0]){
                 console.log('deleteting!')
                 onFormFourthSubmit()
-                axios.post('http://localhost:5000/route/api/profile-img-delete', {imgsrc, imgName}).then(console.log("done"))
+                axios.post('http://ec2-52-91-46-189.compute-1.amazonaws.com:5000/route/api/profile-img-delete', {imgsrc, imgName}).then(console.log("done"))
             }
         }
         setSelectedFile(event.target.files[0])
@@ -85,7 +85,7 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
             document.querySelector(".loader-row").setAttribute("style", "display:block")
             if ( selectedFile ) {
                 data.append( 'profileImage', selectedFile, selectedFile.name )
-                axios.post( 'http://localhost:5000/route/api/profile-img-upload', data, {
+                axios.post( 'http://ec2-52-91-46-189.compute-1.amazonaws.com:5000/route/api/profile-img-upload', data, {
                     headers: {
                     'accept': 'application/json',
                     'Accept-Language': 'en-US,en;q=0.8',
