@@ -9,7 +9,10 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 - [x] leave button
 - [x] waiting lobby
 - [x] staff view
-- [ ] fix styling
-- [ ] debug images
+- [x] debug images
 - [x] modify boiler code
-- [ ] deploy
+- [x] deploy
+- [ ] fix cors error
+- [ ] fix max chars for name & family name
+- [ ] gateway bug
+- [ ] fix styling
