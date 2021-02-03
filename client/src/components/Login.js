@@ -21,6 +21,10 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
         //validation
         //name cannot be empty
         if(document.querySelector(".name-field").value.replace(/\s/g, "").length === 0){
+            document.querySelector(".name-field-validate").innerHTML = "Invalid input!"
+            document.querySelector(".name-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;");
+        } else if (document.querySelector(".name-field").value.length > 20){
+            document.querySelector(".name-field-validate").innerHTML = "Max 20 Characters!"
             document.querySelector(".name-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;");
         } else {
             document.querySelector(".name-field-validate").setAttribute("style", "display:none;");
@@ -29,7 +33,11 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
 
         //family cannot be empty
         if(document.querySelector(".family-field").value.replace(/\s/g, "").length === 0){
+            document.querySelector(".family-field-validate").innerHTML = "Invalid input!"
             document.querySelector(".family-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;")
+        } else if (document.querySelector(".family-field").value.length > 20){
+            document.querySelector(".family-field-validate").innerHTML = "Max 20 Characters!"
+            document.querySelector(".family-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;");
         } else {
             document.querySelector(".family-field-validate").setAttribute("style", "display:none;")
             onFormSecondSubmit(familyRef.current.value)
@@ -150,14 +158,14 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
                             <Form.Label column sm={2}>Name:</Form.Label>
                             <Col>
                                 <Form.Control className="name-field" type="text" ref={nameRef}/>
-                                <p className="name-field-validate" style={{display:"none"}}>Invalid input!</p>
+                                <p className="name-field-validate" style={{display:"none"}}></p>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>
                         <Form.Label column sm={2}>Family:</Form.Label>
                             <Col>
                                 <Form.Control className="family-field" type="text" ref={familyRef}/>
-                                <p className="family-field-validate" style={{display:"none"}}>Invalid input!</p>
+                                <p className="family-field-validate" style={{display:"none"}}></p>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row}>

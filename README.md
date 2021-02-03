@@ -12,7 +12,8 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 - [x] debug images
 - [x] modify boiler code
 - [x] deploy
-- [ ] fix cors error
-- [ ] fix max chars for name & family name
+- [x] fix cors error
+- [x] fix max chars for name & family name
 - [ ] gateway bug
 - [ ] fix styling
+- [ ] add a sort
