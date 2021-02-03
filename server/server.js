@@ -1,9 +1,10 @@
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
-const profile = require( './route/api/profile');
-const bodyParser = require('body-parser');
+const profile = require( './route/api/profile')
+const bodyParser = require('body-parser')
 const cors = require('cors')
+const fs = require('fs')
 
 const test = require('./route/api/test')
 
@@ -13,15 +14,17 @@ const app = express();
 const server = http.createServer(app);
 
 const io = socketio(server, {
-    cors:{
-        origin:"http://localhost:3000",
-        credentials: true
-    }
+	cors:{
+		origin: "https://www.uvsaspark.com",
+		credentials: true
+	}
 })
+
+
 
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(cors)
+app.use(cors())
 
 app.use("/route/api", profile)
 // app.post('/route/api/test', (req, res) => {
@@ -76,5 +79,9 @@ io.on('connection', socket =>{
         })
     })
 })
+
+app.get('/', (req, res) => {
+ res.send('<h1>API, hello world!</h1>')
+});
 
 server.listen(5000, () => console.log('Server starting...'));
