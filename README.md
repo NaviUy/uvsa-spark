@@ -15,5 +15,6 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 - [x] fix cors error
 - [x] fix max chars for name & family name
 - [ ] gateway bug
+- [ ] button that resets everyones count
 - [ ] fix styling
 - [ ] add a sort
