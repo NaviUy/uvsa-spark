@@ -34,7 +34,7 @@ function tapped(id){
 }
 
 function deleteImg(imgName){
-    axios.post('http://localhost:5000/route/api/profile-img-delete', {imgName})
+    axios.post('https://www.api.uvsaspark.com/route/api/profile-img-delete', {imgName})
     .then(console.log("done"))
     .catch(error => {
         console.log(error)
