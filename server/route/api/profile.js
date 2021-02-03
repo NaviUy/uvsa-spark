@@ -5,27 +5,24 @@ const multer = require('multer');
 const path = require( 'path' );
 const url = require('url');
 const http = require('http')
-// const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config()
+
 /**
  * express.Router() creates modular, mountable route handlers
  * A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a “mini-app”.
  */
-const app = express();
-const server = http.createServer(app);
-const router = express.Router(server, {
-    cors:{
-    origin:"http://localhost:3000",
-    credentials: true
-    }
-})
+
+const app = express()
+const server = http.createServer(app)
+const router = express.Router(server)
 
 /**
  * PROFILE IMAGE STORING STARTS
  */
 const s3 = new aws.S3({
-    // accessKeyId: process.env.REACT_APP_ACCESS_KEY,
-    // secretAccessKey: process.env.REACT_APP_SECRET_KEY,
-    // region: process.env.REACT_APP_REGION
+     accessKeyId: process.env.REACT_APP_ACCESS_KEY,
+     secretAccessKey: process.env.REACT_APP_SECRET_KEY,
+     region: process.env.REACT_APP_REGION
    });
 
    /**
@@ -35,7 +32,7 @@ const profileImgUpload = multer({
     storage: multerS3({
      s3: s3,
      bucket: 'uvsa-spark',
-    //  acl: 'public-read',
+     acl: 'public-read',
      key: function (req, file, cb) {
       cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
      }
@@ -110,6 +107,7 @@ router.post( '/profile-img-delete', (req, res) => {
              console.log(error)
             } else {
                 console.log(req.body.imgName + " has been deleted.")
+		res.end()
         }
         })
     }
