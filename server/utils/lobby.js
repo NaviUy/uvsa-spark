@@ -42,7 +42,7 @@ function deleteImg(imgName){
 }
 
 function reset(){
-    for(let user in users){
+    for(let user of users){
         user.count = 0
     }
 }
