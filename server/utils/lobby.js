@@ -55,5 +55,6 @@ module.exports = {
     userLeave,
     getAllUsers,
     tapped,
-    deleteImg
+    deleteImg,
+    reset
 }
