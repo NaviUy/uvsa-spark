@@ -7,7 +7,7 @@ export function useDashboard(){
     return useContext(DashboardContext)
 }
 
-export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, setIsStaff, setCurrentCount, kickId, setKickId, imgsrc, imgName, children }) {
+export function DashboardProvider( { name, familyName, staffID, setUsers, tapId, setTapId, setIsStaff, setCurrentCount, kickId, setKickId, imgsrc, imgName, reset, setReset, children }) {
     const socket = useSocket()
 
     useEffect(() => {
@@ -66,6 +66,17 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
             socket.off('kick')
         }
     }, [kickId, setKickId, socket])
+
+    useEffect(()=>{
+        if(socket ==null) return
+        if (reset){
+            socket.emit('reset')
+            setReset()
+        }
+        return ()=>{
+            socket.off('reset')
+        }
+    }, [reset, setReset, socket])
 
 
 

@@ -41,6 +41,12 @@ function deleteImg(imgName){
     })
 }
 
+function reset(){
+    for(let user in users){
+        user.count = 0
+    }
+}
+
 
 
 module.exports = {

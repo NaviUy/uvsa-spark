@@ -8,7 +8,8 @@ const fs = require('fs')
 
 const test = require('./route/api/test')
 
-const { userJoin, getCurrentUser, getAllUsers, userLeave, tapped, deleteImg } = require('./utils/lobby')
+const { userJoin, getCurrentUser, getAllUsers, userLeave, tapped, deleteImg, reset } = require('./utils/lobby')
+const { count } = require('console')
 
 const app = express();
 const server = http.createServer(app);
@@ -51,6 +52,11 @@ io.on('connection', socket =>{
         io.emit('users', {
             users: getAllUsers()
         })
+    })
+
+    socket.on('reset', ()=>{
+        reset()
+        io.emit('currentCount', {count: 0})
     })
 
     socket.on('joinRoom', ({ name, familyName, staffID, imgsrc, imgName }) => {
