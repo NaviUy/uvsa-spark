@@ -16,5 +16,5 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 - [x] fix max chars for name & family name
 - [x] gateway bug
 - [x] button that resets everyones count only staff
-- [ ] fix styling
+- [x] fix styling
 - [x] add a sort

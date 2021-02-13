@@ -75,6 +75,7 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
                     <Button onClick={()=>window.location.reload()} className="leave" size="sm">Leave</Button>
                 </div>
             </Container>
+
             {staffID === 'true' ? <Container className="display-bar">
                                         <div className="display-div-staff">
                                             <div>Staff Control Panel</div>
@@ -83,7 +84,9 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
                                     </Container>
                                     : ""}
 
-            <Select
+            <Container className="filter-bar">
+                <h6 className="filter-heading">Filter:</h6>
+                <Select
                     className="basic-single"
                     classNamePrefix="select"
                     isSearchable={false}
@@ -91,14 +94,16 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
                     defaultValue={filter}
                     options={dropdowns}
                     onChange={filterHandler} />
+            </Container>
 
             {/* <select id="filter" onChange={filterHandler(this)}>
                 <option key="ALL" value="ALL">ALL</option>
                 {dropdowns ? dropdowns.map(value => <option key={value} value={value}>{value}</option>) : ""}
             </select> */}
-                <div className="userList">
+            <div className="userList">
                     {filteredList.length !== 0 ? <div className="card-container">{filteredList.map((user, index) => CardRender(user, index, setTapId, isStaff, setKickId))}</div> : <div className="waiting-lobby">Waiting for someone to join the lobby! <div className="loader"/></div>}
-                </div>
+            </div>
+            <div className="blank-div"></div>
             </DashboardProvider>
         </SocketProvider>
         </>
