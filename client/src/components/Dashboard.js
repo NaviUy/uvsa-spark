@@ -3,6 +3,7 @@ import { SocketProvider } from '../context/SocketProvider'
 import { DashboardProvider } from '../context/DashboardProvider'
 import { CardRender } from './CardRender'
 import { Container, Button } from 'react-bootstrap'
+import Select from 'react-select'
 import '../css/display.css'
 
 export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }) {
@@ -12,6 +13,9 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
     const [currentCount, setCurrentCount] = useState(0)
     const [isStaff, setIsStaff] = useState(false)
     const [reset, setReset] = useState()
+    const [dropdowns, setDropdowns] = useState({value: 'ALL', label: 'ALL'})
+    const [filter, setFilter] = useState({value: 'ALL', label: 'ALL'})
+    const [filteredList, setFilteredList] = useState([])
 
     useEffect(() => {
         document.querySelector(".count").innerHTML = currentCount
@@ -19,6 +23,46 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
 
         }
     }, [currentCount])
+
+    useEffect(()=>{
+        const makingList = [{value: 'ALL', label: 'ALL'}]
+        const checkList = []
+        for(let user of users){
+            if(!checkList.includes(user.familyName.toLowerCase().replace(/\s/g, ""))){
+                checkList.push(user.familyName.toLowerCase().replace(/\s/g, ""))
+                const newEntry = { value: user.familyName, label: user.familyName}
+                makingList.push(newEntry)
+            }
+        }
+        setDropdowns(makingList)
+    return () => {
+
+    }}, [users])
+
+    useEffect(()=>{
+            if(filter.value === 'ALL'){
+                setFilteredList(users)
+            } else {
+                const makingList= []
+                for(let user of users){
+                    if(user.familyName.toLowerCase().replace(/\s/g, "") === filter.value.toLowerCase().replace(/\s/g, "")){
+                        makingList.push(user)
+                    }
+                }
+                if(makingList.length < 1){
+                    setFilter({value: 'ALL', label: 'ALL'})
+                } else {
+                    setFilteredList(makingList)
+                }
+            }
+        return () => {
+
+        }
+    }, [filter, users])
+
+    const filterHandler = obj => {
+        setFilter(obj)
+    }
 
     return (
         <>
@@ -38,8 +82,22 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
                                         </div>
                                     </Container>
                                     : ""}
+
+            <Select
+                    className="basic-single"
+                    classNamePrefix="select"
+                    isSearchable={false}
+                    value={filter}
+                    defaultValue={filter}
+                    options={dropdowns}
+                    onChange={filterHandler} />
+
+            {/* <select id="filter" onChange={filterHandler(this)}>
+                <option key="ALL" value="ALL">ALL</option>
+                {dropdowns ? dropdowns.map(value => <option key={value} value={value}>{value}</option>) : ""}
+            </select> */}
                 <div className="userList">
-                    {users.length !== 0 ? <div className="card-container">{users.map((user, index) => CardRender(user, index, setTapId, isStaff, setKickId))}</div> : <div className="waiting-lobby">Waiting for someone to join the lobby! <div className="loader"/></div>}
+                    {filteredList.length !== 0 ? <div className="card-container">{filteredList.map((user, index) => CardRender(user, index, setTapId, isStaff, setKickId))}</div> : <div className="waiting-lobby">Waiting for someone to join the lobby! <div className="loader"/></div>}
                 </div>
             </DashboardProvider>
         </SocketProvider>
