@@ -11,8 +11,8 @@ export function SocketProvider({ children }) {
     const [socket, setSocket] = useState()
 
     useEffect(() => {
-        // const newSocket = io('https://www.api.uvsaspark.com')
-        const newSocket = io('http://localhost:5000')
+        const newSocket = io('https://www.api.uvsaspark.com')
+        // const newSocket = io('http://localhost:5000')
         setSocket(newSocket)
 
         return () => {

@@ -94,3 +94,8 @@
 .blank-div{
     margin-bottom: 10px;
 }
+
+.card{
+    max-height: 450px;
+    min-height: 450px;
+}
