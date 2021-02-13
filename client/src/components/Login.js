@@ -95,6 +95,7 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
                 data.append( 'profileImage', selectedFile, selectedFile.name )
                 axios.post( 'https://www.api.uvsaspark.com/route/api/profile-img-upload', data, {
                     headers: {
+                    'Access-Control-Allow-Origin': '*',
                     'accept': 'application/json',
                     'Accept-Language': 'en-US,en;q=0.8',
                     'Content-Type': `multipart/form-data; boundary=${data._boundary}`,

@@ -17,4 +17,4 @@ Currently developing web application for the UVSA (Union of Vietnamese Student A
 - [x] gateway bug
 - [x] button that resets everyones count only staff
 - [ ] fix styling
-- [ ] add a sort
+- [x] add a sort
