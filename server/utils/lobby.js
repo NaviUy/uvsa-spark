@@ -2,7 +2,7 @@ const axios = require('axios')
 
 const users = []
 
-function userJoin(id, name, familyName, staff, imgsrc, imgName, count){
+function userJoin(id, name, familyName, staff, imgsrc, imgName, count=0){
     const user = { id, name, familyName, staff, imgsrc, imgName, count }
 
     users.push(user);
@@ -30,7 +30,9 @@ function userLeave(id){
 }
 
 function tapped(id){
-    getCurrentUser(id).count += 1
+	if(getCurrentUser(id) != undefined){
+		getCurrentUser(id).count += 1
+	}
 }
 
 function deleteImg(imgName){
