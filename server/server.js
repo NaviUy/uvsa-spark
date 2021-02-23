@@ -9,7 +9,6 @@ const fs = require('fs')
 const test = require('./route/api/test')
 
 const { userJoin, getCurrentUser, getAllUsers, userLeave, tapped, deleteImg, reset } = require('./utils/lobby')
-const { count } = require('console')
 
 const app = express();
 const server = http.createServer(app);
@@ -24,8 +23,8 @@ const io = socketio(server, {
 
 
 // app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(cors())
+app.use(bodyParser.json())
 
 app.use("/route/api", profile)
 // app.post('/route/api/test', (req, res) => {
