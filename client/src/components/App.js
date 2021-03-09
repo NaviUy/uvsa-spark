@@ -10,8 +10,7 @@ function App() {
   const [imgName, setImgName] = useState();
 
   return (
-      name && familyName && staffID && imgsrc ? <Dashboard name={ name } familyName={ familyName } staffID = { staffID } imgsrc={imgsrc} imgName={imgName}/> : <Login onFormSubmit={setName} onFormSecondSubmit={setFamilyName} onFormThirdSubmit={setStaffID} onFormFourthSubmit={setImgSrc} imgsrc={imgsrc} onFormFifthSubmit={setImgName} imgName={imgName}/>
-
+      name && familyName && staffID && imgsrc && imgName ? <Dashboard name={ name } familyName={ familyName } staffID = { staffID } imgsrc={imgsrc} imgName={imgName}/> : <Login onFormSubmit={setName} onFormSecondSubmit={setFamilyName} onFormThirdSubmit={setStaffID} onFormFourthSubmit={setImgSrc} imgsrc={imgsrc} onFormFifthSubmit={setImgName} imgName={imgName}/>
   );
 }
 

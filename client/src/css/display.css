@@ -14,6 +14,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: fixed;
+    z-index: 100;
+    border-style: solid;
+    border-width: thin;
 }
 
 .display-heading{
@@ -98,4 +102,12 @@
 .card{
     max-height: 450px;
     min-height: 450px;
+}
+
+.spacer{
+    height: 190px;
+}
+
+.test-spacer{
+    height: 100vh;
 }

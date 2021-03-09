@@ -70,12 +70,12 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
             <DashboardProvider name={ name } familyName={ familyName } staffID = { staffID } setUsers = { setUsers } tapId = {tapId} setTapId = {setTapId} setCurrentCount={setCurrentCount} setIsStaff={setIsStaff} kickId={kickId} setKickId={setKickId} imgsrc={imgsrc} imgName={imgName} reset={reset} setReset={setReset}>
             <Container className="display-bar">
                 <div className="display-div">
-                    <h5 className="display-heading">Your Taps:</h5>
+                    <h5 className="display-heading">Taps Received:</h5>
                     <h4 className="count">{currentCount}</h4>
                     <Button onClick={()=>window.location.reload()} className="leave" size="sm">Leave</Button>
                 </div>
             </Container>
-
+            <div className="spacer"/>
             {staffID === 'true' ? <Container className="display-bar">
                                         <div className="display-div-staff">
                                             <div>Staff Control Panel</div>
@@ -89,7 +89,7 @@ export default function Dashboard({ name, familyName, staffID, imgsrc, imgName }
                 <Select
                     className="basic-single"
                     classNamePrefix="select"
-                    isSearchable={false}
+                    isSearchable={true}
                     value={filter}
                     defaultValue={filter}
                     options={dropdowns}

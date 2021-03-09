@@ -3,11 +3,14 @@ import  { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import axios from 'axios';
 import logo from '../assets/download.jpg'
 import '../css/login.css'
+import { getOptions } from './Families'
+import Select from 'react-select'
 
 export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSubmit, onFormFourthSubmit, imgsrc, onFormFifthSubmit, imgName } ) {
 
     const nameRef = useRef()
-    const familyRef = useRef()
+    const [familyRef, setFamilyRef] = useState()
+    // const familyRef = useRef()
     const staffIDRef = useRef()
     const [toggle, setToggle] = useState(false)
     const [selectedFile, setSelectedFile] = useState(null)
@@ -17,6 +20,7 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
 
     function handleSubmit(e){
         e.preventDefault()
+        onFormSubmit()
 
         //validation
         //name cannot be empty
@@ -32,16 +36,26 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
         }
 
         //family cannot be empty
-        if(document.querySelector(".family-field").value.replace(/\s/g, "").length === 0){
+
+        if(familyRef !== undefined){
+            document.querySelector(".family-field-validate").setAttribute("style", "display:none;");
+            // console.log(familyRef)
+            onFormSecondSubmit(familyRef.value)
+        } else {
             document.querySelector(".family-field-validate").innerHTML = "Invalid input!"
             document.querySelector(".family-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;")
-        } else if (document.querySelector(".family-field").value.length > 20){
-            document.querySelector(".family-field-validate").innerHTML = "Max 20 Characters!"
-            document.querySelector(".family-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;");
-        } else {
-            document.querySelector(".family-field-validate").setAttribute("style", "display:none;")
-            onFormSecondSubmit(familyRef.current.value)
         }
+
+        // if(document.querySelector(".family-field").value.replace(/\s/g, "").length === 0){
+        //     document.querySelector(".family-field-validate").innerHTML = "Invalid input!"
+        //     document.querySelector(".family-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;")
+        // } else if (document.querySelector(".family-field").value.length > 20){
+        //     document.querySelector(".family-field-validate").innerHTML = "Max 20 Characters!"
+        //     document.querySelector(".family-field-validate").setAttribute("style", "margin-bottom: 0; color: red; display:block;");
+        // } else {
+        //     document.querySelector(".family-field-validate").setAttribute("style", "display:none;")
+        //     onFormSecondSubmit(familyRef.current.value)
+        // }
 
         //input validation for staff
         if(toggle && document.querySelector(".staff-field").value.replace(/\s/g, "").length === 0){
@@ -78,6 +92,7 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
             if(imgsrc && event.target.files[0]){
                 console.log('deleteting!')
                 onFormFourthSubmit()
+                onFormFifthSubmit()
                 axios.post('https://www.api.uvsaspark.com/route/api/profile-img-delete', {imgsrc, imgName}).then(console.log("done"))
             }
         }
@@ -122,7 +137,7 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
                             // console.log( 'fileName', fileName );
                             // console.log( 'File Uploaded', '#3089cf' )
                             // console.log(document)
-                            console.log(response.data.location)
+                            // console.log(response.data.location)
                             document.querySelector(".loader-row").setAttribute("style", "display:none")
                             onFormFourthSubmit(response.data.location)
                             onFormFifthSubmit(response.data.image)
@@ -142,6 +157,10 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
                 document.querySelector(".loader-row").setAttribute("style", "display:none")
             }
         }
+    }
+
+    const familyChangeHandler = obj => {
+        setFamilyRef(obj)
     }
 
     return (
@@ -164,8 +183,18 @@ export default function Login({ onFormSubmit, onFormSecondSubmit, onFormThirdSub
                         </Form.Group>
                         <Form.Group as={Row}>
                         <Form.Label column sm={2}>Family:</Form.Label>
-                            <Col>
+                            {/* <Col>
                                 <Form.Control className="family-field" type="text" ref={familyRef}/>
+                                <p className="family-field-validate" style={{display:"none"}}></p>
+                            </Col> */}
+                            <Col>
+                                <Select
+                                    className="family-field"
+                                    classNamePrefix="select"
+                                    isSearchable={true}
+                                    options={getOptions()}
+                                    onChange={familyChangeHandler}
+                                />
                                 <p className="family-field-validate" style={{display:"none"}}></p>
                             </Col>
                         </Form.Group>

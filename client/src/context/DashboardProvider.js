@@ -28,6 +28,7 @@ export function DashboardProvider( { name, familyName, staffID, setUsers, tapId,
         })
 
         socket.emit('joinRoom', { name, familyName, staffID, imgsrc, imgName })
+        // console.log(name + " " + familyName + " " + staffID  + " " + imgsrc + " " + imgName)
 
         socket.on('currentCount', ({count}) =>{
             setCurrentCount(count)

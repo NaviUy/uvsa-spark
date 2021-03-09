@@ -1,0 +1,30 @@
+const options = [{value: "Thumper", label: "Thumper"},
+                {value: "Flower", label: "Flower"},
+                {value: "Gus", label: "Gus"},
+                {value: "Jaq", label: "Jaq"},
+                {value: "Sebastian", label: "Sebastian"},
+                {value: "Flounder", label: "Flounder"},
+                {value: "Lumiere", label: "Lumiere"},
+                {value: "Cogsworth", label: "Cogsworth"},
+                {value: "Abu", label: "Abu"},
+                {value: "Carpet", label: "Carpet"},
+                {value: "Timon", label: "Timon"},
+                {value: "Pumbaa", label: "Pumbaa"},
+                {value: "Pegasus", label: "Pegasus"},
+                {value: "Phil", label: "Phil"},
+                {value: "Mushu", label: "Mushu"},
+                {value: "Lucky Cricket", label: "Lucky Cricket"},
+                {value: "Maximus", label: "Maximus"},
+                {value: "Pascal", label: "Pascal"},
+                {value: "Olaf", label: "Olaf"},
+                {value: "Sven", label: "Sven"},
+                {value: "Summit Chairs", label: "Summit Chairs"},
+                {value: "Marketing & Media Committee", label: "Marketing & Media Committee"},
+                {value: "Programming Committee", label: "Programming Committee"},
+                {value: "Family Programming Committee + FPC Mentors", label: "Family Programming Committee + FPC Mentors"},
+                {value: "Registration Committee", label: "Registration Committee"},
+                {value: "Entertainment Committee", label: "Entertainment Committee"}]
+
+export function getOptions(){
+    return options
+}
