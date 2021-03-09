@@ -6,6 +6,7 @@ const path = require( 'path' );
 const url = require('url');
 const http = require('http')
 const dotenv = require('dotenv').config()
+const cors = require('cors')
 
 /**
  * express.Router() creates modular, mountable route handlers
@@ -15,6 +16,8 @@ const dotenv = require('dotenv').config()
 const app = express()
 const server = http.createServer(app)
 const router = express.Router(server)
+
+app.use(cors())
 
 /**
  * PROFILE IMAGE STORING STARTS
@@ -107,10 +110,10 @@ router.post( '/profile-img-delete', (req, res) => {
              console.log(error)
             } else {
                 console.log(req.body.imgName + " has been deleted.")
-		res.end()
         }
         })
     }
+	res.end()
 })
 
 module.exports = router;
