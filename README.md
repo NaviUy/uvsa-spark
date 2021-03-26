@@ -1,6 +1,7 @@
 # uvsa-spark
 
-Currently developing web application for the UVSA (Union of Vietnamese Student Association).
+Web application for the UVSA (Union of Vietnamese Student Association).
+![](demo.gif)
 
 
 - [x] tap funtionality
