@@ -1,9 +1,11 @@
 # uvsa-spark
 
 Web application for the UVSA (Union of Vietnamese Student Association).
+
+# Demo
 ![](demo.gif)
 
-
+# Goals
 - [x] tap funtionality
 - [x] display count only your count
 - [x] hide your own card
