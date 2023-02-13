@@ -15,7 +15,7 @@ export function CardRender({id, name, familyName, imgsrc, imgName}, index, setId
 
     return (
         <Card style={{width: '18rem', marginLeft:'10px', marginTop: '10px'}} key={index}>
-            <div>this is branch #1</div>
+            <div>THIS IS A DIV IN BRANCH 2</div>
             <Card.Header className="card-header" style={{padding:'10px 10px 10px 10px'}}>
                 <h6 className="name-header">Name: { name }</h6>
                 {/* {console.log(isStaff)} */}
